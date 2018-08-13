@@ -8,14 +8,11 @@ describe '#statement' do
   subject(:bank) { Bank.new }
 
   it 'should show a list of date-action, credit, debit and balance' do
-    bank.deposit(1000)
-    bank.deposit(2000)
-    bank.withdraw(500)
-    expect(bank.statement).to eq('
-      date || credit || debit || balance
-      14/01/2012 || || 500.00 || 2500.00
-      13/01/2012 || 2000.00 || || 3000.00
-      10/01/2012 || 1000.00 || || 1000.00
-    ')
+    date1 = Time.new(2018, 8, 13).strftime("%d/%m/%Y")
+    date2 = Time.new(2018, 8, 14).strftime("%d/%m/%Y")
+
+    bank.deposit(3000, date1)
+    bank.withdraw(500, date2)
+    expect(bank.print_statement).to eq("date || credit || debit || balance\n14/08/2018 ||  || 500 || 2500 || \n13/08/2018 || 3000 ||  || 3000 || ")
   end
 end
