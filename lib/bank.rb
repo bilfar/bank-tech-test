@@ -13,11 +13,20 @@ class Bank
     @history << transaction
   end
 
+  def withdraw(withdraw_num, date = Time.now.strftime("%d/%m/%Y"))
+    @balance -= withdraw_num
+    transaction = { date: date, credit: "", debit: withdraw_num, balance: @balance }
+    @history << transaction
+  end
+
   def print_statement
-    @history.each do |transaction|
-      return "date || credit || debit || balance
-       #{transaction[:date]} || #{transaction[:credit]} ||
-       || #{transaction[:balance]}"
-    end
+    statement = "date || credit || debit || balance"
+    @history.reverse_each do |transaction|
+      statement << "\n"
+        transaction.each do |key, value|
+          statement << "#{transaction[key]} || "
+        end
+      end
+    statement
   end
 end
