@@ -1,6 +1,6 @@
 class Printer
 
-   def to_screen(history)
+  def to_screen(history)
     statement = "date || credit || debit || balance"
     history.reverse_each do |transaction|
       statement << "\n"
@@ -10,4 +10,4 @@ class Printer
     end
     statement
   end
- end
+end

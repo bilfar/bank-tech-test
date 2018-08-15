@@ -1,8 +1,6 @@
-
 require 'printer'
 
 describe Printer do
-
   let(:printer) { Printer.new }
   let(:date) { Time.new(2018, 8, 14).strftime("%d/%m/%Y") }
 

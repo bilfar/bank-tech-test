@@ -14,12 +14,14 @@ class Bank
 
   def deposit(num, date = Time.now.strftime("%d/%m/%Y"))
     @balance += num
-    @transaction.add_transaction({ date: date, credit: num, debit: "", balance: @balance })
+    @transaction.add_transaction({ date: date, credit: num, debit: "",
+      balance: @balance })
   end
 
   def withdraw(num, date = Time.now.strftime("%d/%m/%Y"))
     @balance -= num
-    @transaction.add_transaction( { date: date, credit: "", debit: num, balance: @balance })
+    @transaction.add_transaction({ date: date, credit: "", debit: num,
+      balance: @balance })
   end
 
   def print_statement
