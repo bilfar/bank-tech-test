@@ -69,7 +69,6 @@ This app running on the following dependencies:
 * Take money from your balance: bank.withdraw(2500)
 * Print out the statements: bank.print_statement
 
-
 This is how it looks like in the IRB console:
 
 ```
@@ -99,31 +98,27 @@ date || credit || debit || balance
 13/08/2018 || 1000.00 || || 1000.00
 ```
 
-
-
 ## Test coverage
+Bank#deposit
+* should add money to the balance when a deposit is made
 
+Bank#withdraw
+* should take money from the balance when a withdraw is made
+* should print a bank-statement
 
-#deposit
+Bank#statement
+* should show a list of date, credit, debit and balance
 
-* should add money to the balance
+Printer#to_screen
+* should print a formatted statement
 
-* stores the date when action is proceeding
-
-#withdraw
-
-* should take money from the balance
-
-* should also print a debit statement
-
-#statement
-
-* should show a list of date-action, credit, debit and balance
-
+Transaction
+* saves a transaction to the history when deposit is made
+* saves a transaction to the history when withdraw is made
 ```
-Finished in 0.00474 seconds (files took 0.24899 seconds to load)
+Finished in 0.01182 seconds (files took 0.14625 seconds to load)
 
-Coverage report tech-test/coverage. 56 / 56 LOC (100.0%) covered.
+Coverage report: 82 / 82 LOC (100.0%) covered.
 ```
 
 ## Learning outcomes
