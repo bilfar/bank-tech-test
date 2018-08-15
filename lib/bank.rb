@@ -1,31 +1,31 @@
 require 'date'
-class Bank
-  attr_accessor :balance
+require 'transaction'
 
-  def initialize(balance = 0)
-    @balance = balance
-    @history = []
+class Bank
+
+  attr_accessor :balance, :transaction
+
+  def initialize(transaction = Transaction.new)
+    @transaction = transaction
+    @balance = 0
   end
 
   def deposit(num, date = Time.now.strftime("%d/%m/%Y"))
     @balance += num
-    transaction = { date: date, credit: num, debit: "", balance: @balance }
-    @history << transaction
+    @transaction.add_transaction({ date: date, credit: num, debit: "", balance: @balance })
   end
 
-  def withdraw(withdraw_num, date = Time.now.strftime("%d/%m/%Y"))
-    @balance -= withdraw_num
-    transaction = { date: date, credit: "",
-      debit: withdraw_num, balance: @balance }
-    @history << transaction
+  def withdraw(num, date = Time.now.strftime("%d/%m/%Y"))
+    @balance -= num
+    @transaction.add_transaction( { date: date, credit: "", debit: num, balance: @balance })
   end
 
   def print_statement
     statement = "date || credit || debit || balance"
-    @history.reverse_each do |transaction|
+    @transaction.history.reverse_each do |trans|
       statement << "\n"
-      transaction.each do |key, _value|
-        statement << "#{transaction[key]} || "
+      trans.each do |key, _value|
+        statement << "#{trans[key]} || "
       end
     end
     statement
