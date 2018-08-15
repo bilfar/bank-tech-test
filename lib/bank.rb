@@ -1,6 +1,6 @@
 require 'date'
-require 'transaction'
-require 'printer'
+require_relative 'transaction'
+require_relative 'printer'
 
 class Bank
 
