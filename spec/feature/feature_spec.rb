@@ -1,11 +1,10 @@
 require 'bank'
-# as a customer
-# so i can track my spendings
-# i want to print a statement that shows
-# me the date of action, credit, debit and balance.
 
 describe '#statement' do
+
   subject(:bank) { Bank.new }
+  subject(:transaction) { Transaction.new }
+  subject(:printer) { Printer.new }
 
   it 'should show a list of date-action, credit, debit and balance' do
     date1 = Time.new(2018, 8, 13).strftime("%d/%m/%Y")

@@ -1,12 +1,14 @@
 require 'date'
 require 'transaction'
+require 'printer'
 
 class Bank
 
   attr_accessor :balance, :transaction
 
-  def initialize(transaction = Transaction.new)
+  def initialize(transaction = Transaction.new, printer = Printer.new)
     @transaction = transaction
+    @printer = printer
     @balance = 0
   end
 
@@ -21,13 +23,6 @@ class Bank
   end
 
   def print_statement
-    statement = "date || credit || debit || balance"
-    @transaction.history.reverse_each do |trans|
-      statement << "\n"
-      trans.each do |key, _value|
-        statement << "#{trans[key]} || "
-      end
-    end
-    statement
+    @printer.to_screen(@transaction.history)
   end
 end
