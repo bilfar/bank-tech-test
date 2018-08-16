@@ -13,12 +13,14 @@ class Bank
   end
 
   def deposit(num, date = Time.now.strftime("%d/%m/%Y"))
+    raise "amount is a negative number" if num < 0
     @balance += num
     @transaction.add_transaction({ date: date, credit: num, debit: "",
       balance: @balance })
   end
 
   def withdraw(num, date = Time.now.strftime("%d/%m/%Y"))
+    raise "not enough money on you balance" if num > @balance
     @balance -= num
     @transaction.add_transaction({ date: date, credit: "", debit: num,
       balance: @balance })
@@ -27,4 +29,5 @@ class Bank
   def print_statement
     @printer.to_screen(@transaction.history)
   end
+
 end
