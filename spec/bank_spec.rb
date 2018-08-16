@@ -2,7 +2,7 @@ require 'bank'
 
 describe Bank do
 
-  subject(:bank) { Bank.new(transaction, printer) }
+  subject(:bank) { Bank.new(printer) }
 
   let(:transaction) { double :transaction, :history => [] }
   let(:printer) { double :printer }
