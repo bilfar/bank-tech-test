@@ -12,6 +12,6 @@ describe '#statement' do
 
     bank.deposit(3000, date1)
     bank.withdraw(500, date2)
-    expect(bank.print_statement).to eq("date || credit || debit || balance\n14/08/2018 ||  || 500 || 2500 || \n13/08/2018 || 3000 ||  || 3000 || ")
+    expect { bank.print_statement }.to output("date || credit || debit || balance\n14/08/2018 ||  || 500 || 2500\n13/08/2018 || 3000 ||  || 3000\n").to_stdout
   end
 end

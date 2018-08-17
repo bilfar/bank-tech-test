@@ -11,14 +11,14 @@ class Bank
     @history = []
   end
 
-  def deposit(num, date = Time.now.strftime("%d/%m/%Y"))
+  def deposit(num, date = Time.now)
     raise "amount is a negative number" if num < 0
     @balance += num
     @history << ({ date: date, credit: num, debit: "",
       balance: @balance })
   end
 
-  def withdraw(num, date = Time.now.strftime("%d/%m/%Y"))
+  def withdraw(num, date = Time.now)
     raise "not enough money on you balance" if num > @balance
     @balance -= num
     @history <<({ date: date, credit: "", debit: num,

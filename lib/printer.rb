@@ -1,13 +1,24 @@
-class Printer
+require 'date'
 
-  def to_screen(history)
-    statement = "date || credit || debit || balance"
-    history.reverse_each do |transaction|
-      statement << "\n"
-      transaction.each do |key, _value|
-        statement << "#{transaction[key]} || "
-      end
-    end
-    statement
+class Printer
+  def to_screen(transactions)
+  puts "date || credit || debit || balance" + "\n" +
+
+  transactions.reverse.map { |transaction|
+      format(transaction)
+    }.join("\n")
+  end
+
+  private
+
+
+
+  def format(transaction)
+    [
+      transaction[:date],
+      transaction[:credit],
+      transaction[:debit],
+      transaction[:balance]
+    ].join(' || ')
   end
 end
